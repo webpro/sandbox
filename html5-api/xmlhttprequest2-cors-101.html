@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>XMLHttpRequest Level 2 API / CORS 101</title>
+		<style type="text/css">
+			input, textarea {
+				width:100%;
+			}
+		</style>
+	</head>
+	<body>
+
+		<h1>XMLHttpRequest Level 2 / CORS</h1>
+
+		<h2>Definitions</h2>
+
+		<dl>
+			<dt>CORS</dt>
+			<dd>Cross-Origin Resource Sharing</dd>
+			<dt>XMLHttpRequest Level 2 (XHR2)</dt>
+			<dd>Extended functionality for and using the same, well-known <code>XMLHttpRequest</code> object</dd>
+			<dd>User agents that support XMLHttpRequest2 must support CORS (according to W3C specs).</dd>
+		</dl>
+
+		<h2>Description</h2>
+
+		<p>The normal <code>XMLHttpRequest</code> object is used. When the XHR2 object is available, the cross-domain restriction cq. security violation is no longer applicable. The prerequisite for using CORS is that the server has to allow incoming requests from other domains by using an <code>Access-Control-Allow-Origin</code> header. Valid examples include:</p>
+		<ul>
+			<li><code>Access-Control-Allow-Origin: *</code></li>
+			<li><code>Access-Control-Allow-Origin: http://example.org http://webpro.nl</code></li>
+		</ul>
+
+		<h2>Example</h2>
+		<p>
+			<input id="url" value="http://query.yahooapis.com/v1/public/yql?format=json&q="/>
+			<input id="query" value="select * from html where url=&quot;http://sandbox.webpro.nl&quot; and xpath=&quot;//a&quot;"/>
+		</p>
+
+		<p>
+			<button id="button">Execute</button> a cross-domain request.
+		</p>
+
+		<textarea id="response"></textarea>
+
+		<script>
+
+			var oRequest = new XMLHttpRequest();
+
+			oRequest.onreadystatechange = function(event) {
+				if (this.readyState == 4 && this.status == 200) {
+					try {
+						console.dir(JSON.parse(this.responseText)); // Try to parse JSON response
+					} catch(error) {};
+					document.getElementById('response').innerHTML = this.responseText;
+				}
+			};
+
+			document.getElementById('button').addEventListener('click', function() {
+				var sUrl = document.getElementById('url').value;
+				var sQuery = document.getElementById('query').value;
+				oRequest.open('GET', sUrl + encodeURIComponent(sQuery), true);
+				oRequest.send();
+			}, false)
+
+		</script>
+	</body>
+</html>
