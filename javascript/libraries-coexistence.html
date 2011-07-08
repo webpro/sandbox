@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Javascript libraries: co-existence on a single page</title>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/dojo/1.6/dojo/dojo.xd.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/ext-core/3.1.0/ext-core.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/mootools/1.3.2/mootools-yui-compressed.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/yui/3.3.0/build/yui/yui-min.js"></script>
+
+		<style type="text/css">
+			tr > th {
+				text-align:left;
+			}
+
+			td {
+				text-align:center;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Javascript libraries</h1>
+		
+		<h2>Coexistence</h2>
+		
+		<table>
+			<tr>
+				<th></th>
+				<th>Dojo</th>
+				<th>ExtJS</th>
+				<th>jQuery</th>
+				<th>MooTools</th>
+				<th>Prototype</th>
+				<th>YUI</th>
+			</tr>
+			<tr>
+				<th>Dojo 1.6</th>
+				<td>-</td>
+				<td>+</td>
+				<td>+</td>
+				<td>+</td>
+				<td>+</td>
+				<td>+</td>
+			</tr>
+			<tr>
+				<th>ExtJS 3.1.0</th>
+				<td>+</td>
+				<td>-</td>
+				<td>+</td>
+				<td>+</td>
+				<td>+</td>
+				<td>+</td>
+			</tr>
+			<tr>
+				<th>jQuery 1.6.1</th>
+				<td>+</td>
+				<td>+</td>
+				<td>-</td>
+				<td>(1)</td>
+				<td>(2)(3)</td>
+				<td>+</td>
+			</tr>
+			<tr>
+				<th>MooTools 1.3.2</th>
+				<td>+</td>
+				<td>+</td>
+				<td>(1)</td>
+				<td>-</td>
+				<td>(4)(5)</td>
+				<td>+</td>
+			</tr>
+			<tr>
+				<th>Prototype 1.7.0.0</th>
+				<td>+</td>
+				<td>+</td>
+				<td>(2)(3)</td>
+				<td>(4)(5)</td>
+				<td>-</td>
+				<td>+</td>
+			</tr>
+			<tr>
+				<th>YUI 3.3.0</th>
+				<td>+</td>
+				<td>+</td>
+				<td>+</td>
+				<td>+</td>
+				<td>+</td>
+				<td>-</td>
+			</tr>
+		</table>
+		
+		<ol>
+			<li>Global collision: $</li>
+			<li>Prototype before jQuery gives instant error.</li>
+			<li>Global collision: $</li>
+			<li>Prototype before MooTools gives instant error.</li>
+			<li>Global collisions: Class, $, $$</li>
+		</ol>
+		
+		<h2>Global objects and functions</h2>
+		
+		<p>Needless to say, from the following overview it is clear that MooTools and Prototype pollute the global namespace. These are also the libraries that give collisions (i.e. with jQuery).</p>
+		
+		<h3>Dojo</h3>
+		
+		<ul>
+			<li>dijit</li>
+			<li>dojo</li>
+			<li>dojox</li>
+		</ul>
+		
+		<h3>ExtJS</h3>
+		
+		<ul>
+			<li>Ext</li>
+			<li>id</li>
+		</ul>
+
+		<h3>jQuery</h3>
+		
+		<ul>
+			<li>$</li>
+			<li>jQuery</li>
+		</ul>
+
+		<h3>MooTools</h3>
+		
+		<ul>
+			<li>Browser</li>
+			<li>MooTools</li>
+			<li>Selectors</li>
+			<li>Slick</li>
+			<li>uid</li>
+			<li>$constructor</li>
+			<li>Chain</li>
+			<li>Class</li>
+			<li>Cookie</li>
+			<li>Elements</li>
+			<li>Events</li>
+			<li>Fx</li>
+			<li>Hash</li>
+			<li>IFrame</li>
+			<li>Options</li>
+			<li>Request</li>
+			<li>Swiff</li>
+			<li>Type</li>
+			<li>constructor</li>
+			<li>$</li>
+			<li>$$</li>
+			<li>$A</li>
+			<li>$H</li>
+			<li>$arguments...$unlink</li>
+			<li>Native</li>
+			<li>*Event/Listener*</li>
+			<li>cloneEvents</li>
+			<li>eliminate</li>
+			<li>get*</li>
+			<li>instanceOf</li>
+			<li>retrieve</li>
+			<li>store</li>
+			<li>typeOf</li>
+		</ul>
+
+		<h3>Prototype</h3>
+		
+		<ul>
+			<li>$break</li>
+			<li>$continue</li>
+			<li>Abstract</li>
+			<li>Ajax</li>
+			<li>Class</li>
+			<li>Enumerable</li>
+			<li>Field</li>
+			<li>Form</li>
+			<li>Insertion</li>
+			<li>Position</li>
+			<li>Prototype</li>
+			<li>(Sizzle)</li>
+			<li>Toggle</li>
+			<li>Try</li>
+			<li>Hash</li>
+			<li>ObjectRange</li>
+			<li>PeriodicalExecuter</li>
+			<li>Selector</li>
+			<li>Template</li>
+			<li>$</li>
+			<li>$$</li>
+			<li>$A</li>
+			<li>$F</li>
+			<li>$H</li>
+			<li>$R</li>
+			<li>$w</li>
+		</ul>
+		
+		<h3>YUI</h3>
+		
+		<ul>
+			<li>YUI</li>
+		</ul>
+	
+	</body>
+</html>

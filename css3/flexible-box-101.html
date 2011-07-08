@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>CSS Flexible Box 101</title>
+		<style type="text/css">
+
+			div {
+				display: -webkit-box;
+				display: -moz-box;
+				display: box;
+				border: 1px solid #000;
+				width: 100%;
+			}
+
+			.horizontal {
+				-webkit-box-orient: horizontal;
+				-moz-box-orient: horizontal;
+				box-orient: horizontal;
+			}
+
+			.vertical {
+				height: 500px;
+				-webkit-box-orient: vertical;
+				-moz-box-orient: vertical;
+				box-orient: vertical;
+			}
+
+			p {
+				border: 1px solid #CCC;
+			}
+
+			.horizontal p:first-child {
+				width: 300px;
+			}
+
+			.horizontal p:last-child,
+			.vertical p:first-child {
+				-webkit-box-flex: 1;
+				-moz-box-flex: 1;
+				box-flex: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>CSS Flexible Box</h1>
+
+		<div class="horizontal">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique eleifend accumsan. Quisque dictum convallis viverra. Aliquam a faucibus lectus. Fusce et tellus sapien, nec gravida lectus. Phasellus vestibulum, quam sed convallis placerat, turpis dui congue nulla, non facilisis metus purus ut turpis. Fusce non velit odio. Integer et dolor at diam molestie sagittis id eget sem. Maecenas suscipit aliquam sapien, ut consectetur mi vehicula vitae. Vestibulum ullamcorper tincidunt sem in fermentum. Duis lacus purus, porttitor eu aliquet id, cursus non tortor. Nulla facilisi. Quisque tincidunt lectus in nunc sollicitudin ornare. Etiam massa magna, sagittis eu condimentum ac, iaculis in arcu.</p>
+			<p>Phasellus rhoncus mauris sit amet quam sodales sit amet scelerisque massa tempor. Nullam cursus ligula ut augue dictum semper. Nam risus massa, semper eget feugiat sed, posuere vel nisi. In ut turpis eget ipsum pretium lacinia vitae a lorem. Proin diam mi, varius nec pellentesque id, lacinia quis lacus. Nulla eget varius nunc. Proin vitae pharetra nisi. Aliquam at leo ac nisl ultrices pulvinar. Integer ultrices molestie eros, id cursus diam faucibus eget. Nulla sodales imperdiet tristique. Maecenas in augue nec magna varius dapibus quis sed tellus. Aliquam erat volutpat. Donec ultrices iaculis velit, id convallis nibh egestas in. Nulla facilisi. Mauris tellus leo, commodo sed suscipit sed, pellentesque a dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non metus risus, vel semper ante. Suspendisse pharetra, elit a viverra laoreet, ante eros ultricies elit, a rhoncus eros arcu et est. Maecenas et luctus nulla. Curabitur hendrerit consectetur est consequat fermentum.</p>
+		</div>
+
+		<div class="vertical">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique eleifend accumsan. Quisque dictum convallis viverra. Aliquam a faucibus lectus. Fusce et tellus sapien, nec gravida lectus. Phasellus vestibulum, quam sed convallis placerat, turpis dui congue nulla, non facilisis metus purus ut turpis. Fusce non velit odio. Integer et dolor at diam molestie sagittis id eget sem. Maecenas suscipit aliquam sapien, ut consectetur mi vehicula vitae. Vestibulum ullamcorper tincidunt sem in fermentum. Duis lacus purus, porttitor eu aliquet id, cursus non tortor. Nulla facilisi. Quisque tincidunt lectus in nunc sollicitudin ornare. Etiam massa magna, sagittis eu condimentum ac, iaculis in arcu.</p>
+			<p>Phasellus rhoncus mauris sit amet quam sodales sit amet scelerisque massa tempor. Nullam cursus ligula ut augue dictum semper. Nam risus massa, semper eget feugiat sed, posuere vel nisi. In ut turpis eget ipsum pretium lacinia vitae a lorem. Proin diam mi, varius nec pellentesque id, lacinia quis lacus. Nulla eget varius nunc. Proin vitae pharetra nisi. Aliquam at leo ac nisl ultrices pulvinar. Integer ultrices molestie eros, id cursus diam faucibus eget. Nulla sodales imperdiet tristique. Maecenas in augue nec magna varius dapibus quis sed tellus. Aliquam erat volutpat. Donec ultrices iaculis velit, id convallis nibh egestas in. Nulla facilisi. Mauris tellus leo, commodo sed suscipit sed, pellentesque a dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non metus risus, vel semper ante. Suspendisse pharetra, elit a viverra laoreet, ante eros ultricies elit, a rhoncus eros arcu et est. Maecenas et luctus nulla. Curabitur hendrerit consectetur est consequat fermentum.</p>
+		</div>
+	</body>
+</html>

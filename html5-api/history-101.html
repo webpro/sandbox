@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>HTML5 History API 101</title>
+
+		<style>
+			.current {
+				border:2px solid red;
+			}
+		</style>
+	</head>
+	<body>
+
+		<button title="Button A">Button A</button>
+		<button title="Button B">Button B</button>
+		<button title="Button C">Button C</button>
+		
+		<a href="../resources/dummy.html?page=1" title="Link 1">Link 1</a>
+		<a href="../resources/dummy.html?page=2" title="Link 2">Link 2</a>
+		<a href="../resources/dummy.html?page=3" title="Link 3">Link 3</a>
+
+		<a href="#anchor1" title="Anchor 1">Anchor 1</a>
+		<a href="#anchor2" title="Anchor 2">Anchor 2</a>
+
+		<!-- Using jQuery for convenience, it has nothing to do with this demo -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+
+		<script>
+
+			$('a, button').bind('click', function(event) {
+				var oElement = event.target;
+				
+				// Do not follow link/anchor
+				event.preventDefault();
+
+				/*
+				 * Set some state data and push state to history stack
+				 * The 'state' argument can be of any type and is available through the "popstate" event
+				 * The 'title' is not used yet by browsers
+				 * The 'url' is what will appear in the browser address bar
+				 *
+				 * history.pushState(state, title, url)
+				 */
+				 
+				var oState = { title: oElement.title };
+				window.history.pushState(oState, oElement.title, oElement.href || window.location);
+				
+				console.log('history.pushState: ', oState, oElement.href || window.location)
+
+			});
+			
+			/*
+			 * The "popstate" event fires when the browser "Back" or "Forward" button is used
+			 *
+			 * The "event.state" property is only available when it was set by history.pushState(),
+			 * this information is not stored by the browser between page loads.
+			 *
+			 * The "title" argument for history.pushState is not available
+			 * The "url" argument for history.pushState is not available
+			 */
+			
+			window.addEventListener('popstate', function(event) {
+				console.log('event::popstate: ', event);
+				console.log('event::popstate.state: ', event.state);
+
+				// Some UI changes to reflect the new state
+				$('a, button').removeClass('current');
+				if(event.state && event.state.title) {
+					$('a[title="'+event.state.title+'"], button[title="'+event.state.title+'"]').addClass('current');
+				}
+			}, true)
+
+			/*
+			 * The "hashchange" event fires when the url hash is updated,
+			 * but it is not fired on history.pushState()
+			 */
+
+			window.addEventListener('hashchange', function(event) {
+				console.log('hashchange', event);
+			}, true)
+			
+		</script>
+	</body>
+</html>

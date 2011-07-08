@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>HTML5 Canvas API 101</title>
+
+		<style>
+			canvas {
+				border:1px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+
+		<canvas id="myCanvas" width="200" height="200">
+			Your browser doesn't support the &lt;canvas&gt; element.
+		</canvas>
+
+		<script>
+
+			var oCanvas = document.getElementById('myCanvas');
+			var oContext = oCanvas.getContext('2d');
+
+			// Draw a rectangle
+			oContext.fillRect(10, 10, 50, 50);
+
+			// Draw pixels
+			var iWidth = 50, iHeight = 5;
+			var oImageData = oContext.createImageData(50, 1);
+			var aPixels = oImageData.data;
+			for(var i = 0, iLength = aPixels.length; i < iLength; i += 4) {
+				aPixels[i] = 0; // Red
+				aPixels[i+1] = 0; // Green
+				aPixels[i+2] = 0; // Blue
+				aPixels[i+3] = Math.round(i / iLength * 255); // Alpha
+			}
+			oContext.putImageData(oImageData, 10, 70);
+
+			// Draw an image on the canvas (requires the image to be loaded first)
+			var oImage = new Image();
+			oImage.addEventListener('load', function () {
+				oContext.drawImage(this, 70, 10);
+			}, false);
+			oImage.src = '../resources/html5.png';
+			
+			// Draw text
+			oContext.font = '10px sans-serif';
+			oContext.fillText('HTML5', 65, 43);
+			
+		</script>
+	</body>
+</html>

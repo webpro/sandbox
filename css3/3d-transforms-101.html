@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>CSS 3D Transforms 101</title>
+		<style type="text/css">
+
+			body > div {
+				width: 200px;
+				height: 200px;
+				margin: 0 50px;
+				border: 1px solid #000;
+				-webkit-perspective: 400;
+			}
+
+			div > div {
+				width: 100%;
+				height: 100%;
+				background-color: #00F;
+			}
+
+			.rotateX {
+				-webkit-transform: rotateX(45deg);
+				-moz-transform: rotateX(45deg);
+			}
+
+			.rotateY {
+				-webkit-transform: rotateY(45deg);
+			}
+
+			.rotate {
+				-webkit-transform: rotate3d(1, 1, 1, 45deg);
+			}
+
+			.transform-origin {
+				-webkit-transform-origin: left center;
+			}
+
+			.translate {
+				-webkit-transform: translate3d(50px, 0, -100px);
+			}
+
+			.scaleAndSkew {
+				-webkit-transform: scale3d(0.5, 0.8, 1) skew(20deg, 10deg);
+			}
+
+		</style>
+	</head>
+	<body>
+		<h1>CSS 3D Transforms</h1>
+
+		<h2>Rotation X-axis</h2>
+		<div>
+			<div class="rotateX"></div>
+		</div>
+
+		<h2>Rotation Y-axis</h2>
+		<div>
+			<div class="rotateY"></div>
+		</div>
+
+		<h2>Rotation Y-axis with transform-origin (left center)</h2>
+		<div>
+			<div class="transform-origin rotateY"></div>
+		</div>
+
+		<h2>Rotation over every axis</h2>
+		<div>
+			<div class="rotate"></div>
+		</div>
+
+		<h2>Translation over X and Z axis</h2>
+		<div>
+			<div class="translate"></div>
+		</div>
+
+		<h2>Scale and skew combined</h2>
+		<div>
+			<div class="scaleAndSkew"></div>
+		</div>
+	</body>
+</html>

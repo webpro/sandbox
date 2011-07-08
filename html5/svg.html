@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Inline SVG</title>
+
+		<style>
+			svg, embed {
+				display:block;
+				height:200px;
+				width:300px;
+				border:1px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+
+		<h1>SVG</h1>
+
+		<h2>Inline SVG</h2>
+
+		<p>While the SVG language is not part of HTML5, the inline &lt;svg&gt; element is.</p>
+
+		<svg>
+
+			<!--
+				Drawing a path. The "d" attribute represents the path data, containing instructions including:
+				- M = moveto
+				- L = lineto
+				- Z = closepath
+			-->
+			<path stroke="#00F" stroke-width="10" fill="#F00" stroke-linejoin="round" d="M 10,10 L 90,10 L 50,70 Z"/>
+
+			<line stroke="#000" stroke-width="10" stroke-linecap="round" x1="20" y1="90" x2="20" y2="190" />
+
+			<rect x="3cm" y="3cm" width="80" height="1cm"/>
+
+		</svg>
+
+		<h2>Inline SVG (viewBox)</h2>
+
+		<!--
+			The inline svg element has a "viewBox" attribute, to zoom the viewport.
+			The box values provided is what will be shown (stretched/shrinked) in the viewport.
+		-->
+		<svg viewBox="10 10 80 60">
+			<path stroke="#00F" stroke-width="10" fill="#F00" stroke-linejoin="round" d="M 10,10 L 90,10 L 50,70 Z"/>
+			<line stroke="#000" stroke-width="10" stroke-linecap="round" x1="20" y1="90" x2="20" y2="190" />
+			<rect x="3cm" y="3cm" width="80" height="1cm"/>
+		</svg>
+		
+		<h2>Embedded SVG</h2>
+		
+		<embed src="../resources/dummy.svg"/>
+	</body>
+</html>
