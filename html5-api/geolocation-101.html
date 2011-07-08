@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Geolocation API 101</title>
+		<style type="text/css">
+			input, textarea {
+				width:100%;
+			}
+		</style>
+	</head>
+	<body>
+
+		<h1>Geolocation API 101</h1>
+
+		<h2>Example</h2>
+
+		<p>
+			<button id="button">Get</button> current position data (might take a while). Some useful data will be shown below.
+		</p>
+
+		<dl id="data"></dl>
+
+		<script>
+
+			function fCallback(oResponse) {
+
+				var sHTML = '', i, l;
+
+				if(oResponse.coords) {
+					var aCoordsFields = ['latitude', 'longitude', 'altitude'];
+					for(i = 0, l = aCoordsFields.length; i < l; i++) {
+						sHTML += '<dt>' + aCoordsFields[i] + '</dt>' +
+								 '<dd>' + oResponse.coords[aCoordsFields[i]] + '</dd>';
+					}
+				}
+
+				if(oResponse.address) {
+					var aAddressFields = ['city', 'country', 'countryCode', 'county', 'postalCode', 'region', 'street', 'streetNumber']
+					for(i = 0, l = aAddressFields.length; i < l; i++) {
+						sHTML += '<dt>' + aAddressFields[i] + '</dt>' +
+								 '<dd>' + oResponse.address[aAddressFields[i]] + '</dd>';
+					}
+				}
+
+				document.getElementById('data').innerHTML = sHTML;
+			}
+
+			document.getElementById('button').addEventListener('click', function() {
+
+				navigator.geolocation.getCurrentPosition(fCallback);
+
+			}, false)
+
+		</script>
+	</body>
+</html>
