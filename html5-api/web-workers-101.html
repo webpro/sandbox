@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Web Workers 101</title>
+	</head>
+	<body>
+
+		<h1>Web Workers</h1>
+		
+		<p>
+			<button id="buttonSend">Send</button> a message to the web worker (check console for output).
+		</p>
+
+		<p>
+			<button id="buttonTerminate">Terminate</button> the web worker.
+		</p>
+
+		<script>
+
+			var oWorker = new Worker('../resources/web-worker.js');
+			
+			document.getElementById('buttonSend').addEventListener('click', function(event) {
+				oWorker.postMessage('Message from host');
+			}, false);
+
+			document.getElementById('buttonTerminate').addEventListener('click', function(event) {
+				oWorker.terminate();
+			}, false);
+
+			oWorker.addEventListener('message', function(event) {
+				console.log(event.type + ': ' + event.data);
+			}, false);
+
+		</script>
+
+	</body>
+</html>
