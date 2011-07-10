@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>WebSocket API 101</title>
+		<style type="text/css">
+			#output {
+				border:1px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+
+		<h1>WebSocket API</h1>
+		
+		<p>
+			<button id="buttonConnect">Connect</button> with WebSocket server (ws://echo.websocket.org).
+		</p>
+
+		<p>
+			<input type="text" value="Lorem ipsum" id="message"/>
+			<button id="buttonSend">Send</button> message to server.
+		</p>
+
+		<p>
+			<button id="buttonClose">Close</button> connection.
+		</p>
+		
+		<div id="output"></div>
+
+		<script>
+		
+			var oOutput = document.getElementById('output');
+
+			document.getElementById('buttonConnect').addEventListener('click', function(event) {
+				
+				oWebSocket = new WebSocket('ws://echo.websocket.org');
+				
+				oWebSocket.addEventListener('open', function(event) {
+					writeToOutput(event.type, true);
+				}, false);
+				
+				oWebSocket.addEventListener('close', function(event) {
+					writeToOutput(event.type, true);
+				}, false);
+				
+				oWebSocket.addEventListener('message', function(event) {
+					writeToOutput(event.type + ': ' + event.data, true);
+				}, false);
+				
+				oWebSocket.addEventListener('error', function(event) {
+					writeToOutput(event.type, true);
+				}, false);
+				
+			}, false);
+
+			document.getElementById('buttonSend').addEventListener('click', function(event) {
+				var sMessage = document.getElementById('message').value;
+				writeToOutput(sMessage, false);
+				oWebSocket.send(sMessage);
+			}, false);
+
+			document.getElementById('buttonClose').addEventListener('click', function(event) {
+				oWebSocket.close();
+			}, false);
+			
+			function writeToOutput(sMessage, bFromServer) {
+				sMessage += bFromServer ? ' (from WebSocket/server)' : ' (from client)';
+				oOutput.innerHTML += sMessage + '<br/>';
+			}
+
+		</script>
+
+	</body>
+</html>
