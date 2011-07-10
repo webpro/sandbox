@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Web Storage: storage events</title>
+	</head>
+	<body>
+
+		<h1>Web Storage: storage events</h1>
+		
+		<ul>
+			<li>When data is stored, the &quot;storage&quot; is fired in <em>other</em> browser windows that have the same page loaded.</li>
+			<li>The event is only fired when the new value is different from the old value.</li>
+			<li>The event is only fired when using localStorage (not sessionStorage).</li>
+		</ul>
+		
+		<p>
+			<input type="text" value="bar" id="localStorageValue"/>
+			<button id="buttonLocalStore">Store</button> this key/value pair in localStorage
+		</p>
+
+		<h3>Content of localStorage</h3>
+		
+		<div id="localStorage"></div>
+
+		<script>
+		
+			window.addEventListener('storage', function(event) {
+				console.log('The value for ' + event.key + ' was changed from ' + event.oldValue + ' to ' + event.newValue);
+				updateView();
+			}, false);
+
+			document.getElementById('buttonLocalStore').addEventListener('click', function(event) {
+				var sValue = document.getElementById('localStorageValue').value;
+				window.localStorage.setItem('foo', sValue);
+				updateView();
+			}, false);
+			
+			function updateView() {
+				var sHTML = '';
+				for(var i in window.localStorage) {
+					sHTML += i + '=' + window.localStorage[i] + '<br/>';
+				}
+				document.getElementById('localStorage').innerHTML = sHTML;
+			}
+
+			updateView();
+
+		</script>
+
+	</body>
+</html>
