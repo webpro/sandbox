@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Web Storage API (localStorage &amp; sessionStorage) 101</title>
+	</head>
+	<body>
+
+		<h1>Web Storage (localStorage &amp; sessionStorage)</h1>
+		
+		<h2>Local storage</h2>
+		
+		<ul>
+			<li>The only data that can be stored is strings (but mind <code>JSON.stringify()</code>).</li>
+			<li>Data is stored between browser sessions.</li>
+			<li>Data is accessible between browser windows/tabs.</li>
+		</ul>
+		
+		<p>
+			<input type="text" value="foo" id="localStorageKey"/>
+			<input type="text" value="bar" id="localStorageValue"/>
+			<br/>
+			<button id="buttonLocalStore">Store</button> this key/value pair in localStorage
+			<br/>
+			<button id="buttonLocalDelete">Delete</button> this key from localStorage
+		</p>
+
+		<h3>Content of localStorage</h3>
+		
+		<div id="localStorage"></div>
+
+		<h2>Session storage</h2>
+
+		<ul>
+			<li>The only data that can be stored is strings (but mind <code>JSON.stringify()</code>).</li>
+			<li>Data is not stored between browser sessions.</li>
+			<li>Data is not accessible between browser windows/tabs.</li>
+		</ul>
+		
+		<p>
+			<input type="text" value="foo" id="sessionStorageKey"/>
+			<input type="text" value="bar" id="sessionStorageValue"/>
+			<br/>
+			<button id="buttonSessionStore">Store</button> this key/value pair in sessionStorage
+			<br/>
+			<button id="buttonSessionDelete">Delete</button> this key from sessionStorage
+		</p>
+
+		<h3>Content of sessionStorage</h3>
+		
+		<div id="sessionStorage"></div>
+
+		<script>
+
+			document.getElementById('buttonLocalStore').addEventListener('click', function(event) {
+				var sKey = document.getElementById('localStorageKey').value;
+				var sValue = document.getElementById('localStorageValue').value;
+				window.localStorage.setItem(sKey, sValue); // window.localStorage[sKey] = sValue;
+				updateView();
+			}, false);
+
+			document.getElementById('buttonLocalDelete').addEventListener('click', function(event) {
+				var sKey = document.getElementById('localStorageKey').value;
+				window.localStorage.removeItem(sKey); // delete window.localStorage[sKey];
+				updateView();
+			}, false);
+
+			document.getElementById('buttonSessionStore').addEventListener('click', function(event) {
+				var sKey = document.getElementById('sessionStorageKey').value;
+				var sValue = document.getElementById('sessionStorageValue').value;
+				window.sessionStorage.setItem(sKey, sValue); // window.sessionStorage[sKey] = sValue;
+				updateView();
+			}, false);
+
+			document.getElementById('buttonSessionDelete').addEventListener('click', function(event) {
+				var sKey = document.getElementById('sessionStorageKey').value;
+				window.sessionStorage.removeItem(sKey); // delete window.sessionStorage[sKey];
+				updateView();
+			}, false);
+			
+			function updateView() {
+				var sHTML = '';
+				for(var i in window.localStorage) {
+					sHTML += i + '=' + window.localStorage[i] + '<br/>';
+				}
+				document.getElementById('localStorage').innerHTML = sHTML;
+
+				sHTML = '';
+				for(var j in window.sessionStorage) {
+					sHTML += j + '=' + window.sessionStorage[j] + '<br/>';
+				}
+				document.getElementById('sessionStorage').innerHTML = sHTML;
+			}
+
+			updateView();
+
+		</script>
+
+	</body>
+</html>
