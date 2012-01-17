@@ -12,7 +12,7 @@
 	<body>
 
 		<h1>WebSocket API</h1>
-		
+
 		<p>
 			<button id="buttonConnect">Connect</button> with WebSocket server (ws://echo.websocket.org).
 		</p>
@@ -25,48 +25,51 @@
 		<p>
 			<button id="buttonClose">Close</button> connection.
 		</p>
-		
+
 		<div id="output"></div>
 
 		<script>
-		
-			var oOutput = document.getElementById('output');
+
+			var output = document.getElementById('output');
+			var serverUrl = 'ws://echo.websocket.org';
+			var webSocketImpl = typeof WebSocket !== 'undefined' ? WebSocket : typeof MozWebSocket !== 'undefined' ? MozWebSocket : undefined;
+			var myWebSocket;
 
 			document.getElementById('buttonConnect').addEventListener('click', function(event) {
-				
-				oWebSocket = new WebSocket('ws://echo.websocket.org');
-				
-				oWebSocket.addEventListener('open', function(event) {
+
+				myWebSocket = new webSocketImpl(serverUrl);
+
+				myWebSocket.addEventListener('open', function(event) {
 					writeToOutput(event.type, true);
 				}, false);
-				
-				oWebSocket.addEventListener('close', function(event) {
+
+				myWebSocket.addEventListener('close', function(event) {
 					writeToOutput(event.type, true);
 				}, false);
-				
-				oWebSocket.addEventListener('message', function(event) {
+
+				myWebSocket.addEventListener('message', function(event) {
 					writeToOutput(event.type + ': ' + event.data, true);
 				}, false);
-				
-				oWebSocket.addEventListener('error', function(event) {
+
+				myWebSocket.addEventListener('error', function(event) {
 					writeToOutput(event.type, true);
 				}, false);
-				
+
 			}, false);
 
 			document.getElementById('buttonSend').addEventListener('click', function(event) {
 				var sMessage = document.getElementById('message').value;
 				writeToOutput(sMessage, false);
-				oWebSocket.send(sMessage);
+				myWebSocket.send(sMessage);
 			}, false);
 
 			document.getElementById('buttonClose').addEventListener('click', function(event) {
-				oWebSocket.close();
+				myWebSocket.close();
 			}, false);
-			
-			function writeToOutput(sMessage, bFromServer) {
-				sMessage += bFromServer ? ' (from WebSocket/server)' : ' (from client)';
-				oOutput.innerHTML += sMessage + '<br/>';
+
+			function writeToOutput(message, isFromServer) {
+				message += isFromServer ? ' (from WebSocket/server)' : ' (from client)';
+				output.innerHTML += message + '<br/>';
 			}
 
 		</script>
