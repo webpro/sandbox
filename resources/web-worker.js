@@ -6,5 +6,4 @@ oContext.addEventListener('message', function(event) {
 
 }, false);
 
-
 oContext.postMessage('Message from web worker');

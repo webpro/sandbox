@@ -5,60 +5,59 @@
 		<title>Events: capture and bubble phase</title>
 	</head>
 	<body>
-		
-		<p>When clicking the button, the capture phase starts and goes from the root of document to button, and then the bubbling phase goes vice versa.</p>
-		
+
+		<p>When clicking the button, the capture phase starts and goes from the root of the document down to the button, and then the bubbling phase goes vice versa.</p>
+
 		<p>An event handler can only be attached to one phase.</p>
-		
+
 		<p>See the console for output when clicking the button.</p>
-		
+
 		<form id="f">
 			<button id="b">button</button>
 		</form>
 
 		<script type="text/javascript">
 
-			var oForm = document.getElementById('f');
-			var oButton = document.getElementById('b');
-			
-			oForm.addEventListener('click', function(event) {
-				
+			var form = document.getElementById('f');
+			var button = document.getElementById('b');
+
+			form.addEventListener('click', function(event) {
+
 				console.info('Capture phase: form listener');
 				// console.dir(event);
-				
+
 				// event.stopPropagation();
 				// event.preventDefault();
 
 				// event.preventBubble(); // Gecko 1.8, deprecated
 				// event.preventCapture(); // Gecko 1.8, deprecated
 				// event.stopImmediatePropagation(); // jQuery (DOM Level 3 but not in browsers)
-				// event.stopHorizontalPropagation(); // Backbase
 			}, true);
 
-			oForm.addEventListener('click', function(event) {
+			form.addEventListener('click', function(event) {
 				console.info('Capture phase: form listener (2nd)');
 				// event.preventDefault();
 			}, true);
 
-			oForm.addEventListener('click', function() {
+			form.addEventListener('click', function() {
 				console.info('Bubbling phase: form listener');
 			}, false);
 
-			oButton.addEventListener('click', function() {
+			button.addEventListener('click', function() {
 				console.info('Capture phase: button listener');
 			}, true);
 
-			oButton.addEventListener('click', function() {
+			button.addEventListener('click', function() {
 				console.info('Bubbling phase: button listener');
 			}, false);
 
 
-			oForm.addEventListener('submit', function(event) {
+			form.addEventListener('submit', function(event) {
 				event.preventDefault();
 				// return false;
 			}, false);
 
-			
+
 		</script>
 
 	</body>
