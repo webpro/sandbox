@@ -10,7 +10,7 @@
 				height: 200px;
 				margin: 0 50px;
 				border: 1px solid #000;
-				-webkit-perspective: 400;
+				perspective: 400;
 			}
 
 			div > div {
@@ -20,31 +20,33 @@
 			}
 
 			.rotateX {
-				-webkit-transform: rotateX(45deg);
-				-moz-transform: rotateX(45deg);
+				transform: rotateX(45deg);
 			}
 
 			.rotateY {
-				-webkit-transform: rotateY(45deg);
+				transform: rotateY(45deg);
 			}
 
 			.rotate {
-				-webkit-transform: rotate3d(1, 1, 1, 45deg);
+				transform: rotate3d(1, 1, 1, 45deg);
 			}
 
 			.transform-origin {
-				-webkit-transform-origin: left center;
+				transform-origin: left center;
 			}
 
 			.translate {
-				-webkit-transform: translate3d(50px, 0, -100px);
+				transform: translate3d(50px, 0, -100px);
 			}
 
 			.scaleAndSkew {
-				-webkit-transform: scale3d(0.5, 0.8, 1) skew(20deg, 10deg);
+				transform: scale3d(0.5, 0.8, 1) skew(20deg, 10deg);
 			}
 
 		</style>
+
+		<script src="../resources/prefixfree.min.js"></script>
+
 	</head>
 	<body>
 		<h1>CSS 3D Transforms</h1>

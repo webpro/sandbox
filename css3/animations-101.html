@@ -13,27 +13,10 @@
 
 			.animate {
 				position: relative;
-				-webkit-animation: myBasicAnimation 2s 2;
-				-moz-animation-name: myBasicAnimation;
-				-moz-animation-duration: 2s;
-				-moz-animation-iteration-count: 2;
+				animation: myBasicAnimation 2s 2;
 			}
 
-			@-webkit-keyframes myBasicAnimation {
-
-				from {
-					left: 0;
-					top: 0;
-				}
-
-				to {
-					left: 100px;
-					top: 100px;
-				}
-
-			}
-
-			@-moz-keyframes myBasicAnimation {
+			@keyframes myBasicAnimation {
 
 				from {
 					left: 0;
@@ -52,12 +35,16 @@
 			}
 
 		</style>
+
+		<script src="../resources/prefixfree.min.js"></script>
+
 	</head>
 	<body>
 		<h1>CSS Animations 101</h1>
 
 		<h2>Basic animation</h2>
 		<p>Click the box to animate it.</p>
+
 		<div id="animate"></div>
 
 		<!--
@@ -82,9 +69,10 @@
 			        oElement.className += ' animationEnd';
 	        }, false);
 
-			oElement.addEventListener('webkitAnimationEnd', function() {
-					oElement.className += ' animationEnd';
+			oElement.addEventListener('webkitAnimationEnd', function() { // For Chrome
+				oElement.className += ' animationEnd';
 			}, false);
+
 
         </script>
 

@@ -6,23 +6,17 @@
 		<style type="text/css">
 
 			div {
-				display: -webkit-box;
-				display: -moz-box;
 				display: box;
 				border: 1px solid #000;
 				width: 100%;
 			}
 
 			.horizontal {
-				-webkit-box-orient: horizontal;
-				-moz-box-orient: horizontal;
 				box-orient: horizontal;
 			}
 
 			.vertical {
 				height: 500px;
-				-webkit-box-orient: vertical;
-				-moz-box-orient: vertical;
 				box-orient: vertical;
 			}
 
@@ -36,11 +30,12 @@
 
 			.horizontal p:last-child,
 			.vertical p:first-child {
-				-webkit-box-flex: 1;
-				-moz-box-flex: 1;
 				box-flex: 1;
 			}
 		</style>
+
+		<script src="../resources/prefixfree.min.js"></script>
+
 	</head>
 	<body>
 		<h1>CSS Flexible Box</h1>

@@ -14,22 +14,19 @@
 			.opacity {
 				opacity: 1;
 				/* Without setting transition here, it will not animate on blur */
-				-webkit-transition: opacity 0.5s ease-out 0.2s;
-				-moz-transition: opacity 0.5s ease-out 0.2s;
-				-o-transition: opacity 0.5s ease-out 0.2s;
 				transition: opacity 0.5s ease-out 0.2s;
 			}
 
 			.opacity:hover {
 				opacity: 0;
 				/* Without setting transition here, it will inverse the transition defined in .opacity */
-				-webkit-transition: opacity 2s ease-in 0;
-				-moz-transition: opacity 2s ease-in 0;
-				-o-transition: opacity 2s ease-in 0;
 				transition: opacity 2s ease-in 0;
 			}
 
 		</style>
+
+		<script src="../resources/prefixfree.min.js"></script>
+
 	</head>
 	<body>
 		<h1>CSS Transitions</h1>
