@@ -1,0 +1,136 @@
+/* Fonts */
+
+@font-face {
+	font-family: 'Trebuchet MS';
+	src: url('trebuchet_ms-webfont.eot?') format('eot'),
+		url('trebuchet_ms-webfont.woff') format('woff'),
+		url('trebuchet_ms-webfont.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Museo (OT1)';
+	src: url('museo300-regular-webfont.eot?') format('eot'),
+		url('museo300-regular-webfont.woff') format('woff'),
+		url('museo300-regular-webfont.ttf') format('truetype');
+}
+
+/* Main layout */
+
+body {
+	margin:0 0 1em 0;
+	background: url('content_bg.jpg') top left repeat;
+}
+
+body > header,
+body > section,
+body > footer {
+	margin:0 auto;
+	max-width: 760px;
+	padding-left:2%;
+	padding-right:2%;
+}
+
+header {
+	min-height: 100px;
+	background: url("html5-badge-h-css3-graphics-performance-semantics.png") top right no-repeat;
+}
+
+header h1 {
+	margin-top: 1em;
+}
+
+/* Typography */
+
+body {
+	font-family: 'Trebuchet MS';
+	font-size:16px;
+}
+
+h1, h2, h3, table th {
+	font-family: 'Museo (OT1)';
+	font-weight:normal;
+	text-shadow:0 1px 0 #fff;
+	letter-spacing:1px;
+}
+
+h1, .alpha {
+	font-size:1.5em;
+}
+
+h2, .beta {
+	font-size:1.125em;
+}
+
+p, a {
+	color: #555;
+}
+
+a {
+	-webkit-transition: color 0.3s;
+	-moz-transition: color 0.3s;
+	-o-transition: color 0.3s;
+	transition: color 0.3s;
+}
+
+a:hover {
+	color: #f68a22;
+}
+
+/* Table */
+
+table {
+	background-color:#f4f4f4;
+	-webkit-box-shadow:2px 2px 5px #CCC;
+	-moz-box-shadow:2px 2px 5px #CCC;
+	box-shadow:2px 2px 5px #CCC;
+	border-collapse:collapse;
+}
+
+thead {
+	background-color:#ddd;
+}
+
+thead tr + tr {
+	font-size: 70%;
+	line-height: 1;
+	text-align:center;
+	color: #999;
+}
+
+tr {
+	line-height:3;
+}
+
+td[colspan] {
+	text-align:center;
+}
+
+th:first-child, td:first-child {
+	padding-left:8px;
+         }
+
+.th-demo {
+	text-align:left;
+	width:420px;
+}
+
+.support {
+	visibility:hidden;
+	display:inline-block;
+	margin:0 5px;
+	width:32px;
+	height:32px;
+	background-image:url("browser-icons-32x32-32b.png");
+	background-repeat:no-repeat;
+	vertical-align:middle;
+}
+
+.supported {
+	visibility:visible;
+}
+
+.ie { background-position:0 0; }
+.ff { background-position:-32px 0; }
+.gc { background-position:-64px 0; }
+.sa { background-position:-96px 0; }
+.op { background-position:-128px 0; }
