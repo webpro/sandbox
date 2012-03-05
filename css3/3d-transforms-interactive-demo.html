@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>CSS 3D Transforms (Interactive Demo)</title>
+		<style type="text/css">
+
+			/* Generic styles */
+
+			* {
+				box-sizing: border-box;
+			}
+
+			html, body {
+				height: 100%;
+			}
+
+			body {
+				font-family: Helvetica;
+				color: #333;
+			}
+
+			/* Canvas/stage styles */
+
+			#stage {
+				width: 100%;
+				height: 400px;
+				background-color: #EEE;
+				border: 1px solid #CCC;
+
+				perspective: 800px;
+				perspective-origin: 50% 50%;
+			}
+
+			/* Shape/face styles */
+
+			#shape {
+				position: relative;
+				top: 100px;
+				margin: 0 auto;
+				height: 200px;
+				width: 200px;
+				transform-style: preserve-3d;
+
+				animation-name: spin;
+				animation-iteration-count: infinite;
+				animation-timing-function:linear;
+				animation-duration: 8s;
+
+			}
+
+			.face {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background-color: #333;
+				border: 1px solid #000;
+				opacity: 0.7;
+				color: #393939;
+				font-size: 10em;
+			}
+
+			.face:nth-child(1) {
+				transform: rotateY(0deg) translateZ(280px);
+			}
+			.face:nth-child(2) {
+				transform: rotateY(45deg) translateZ(280px);
+			}
+			.face:nth-child(3) {
+				transform: rotateY(90deg) translateZ(280px);
+			}
+			.face:nth-child(4) {
+				transform: rotateY(135deg) translateZ(280px);
+			}
+			.face:nth-child(5) {
+				transform: rotateY(180deg) translateZ(280px);
+			}
+			.face:nth-child(6) {
+				transform: rotateY(225deg) translateZ(280px);
+			}
+			.face:nth-child(7) {
+				transform: rotateY(270deg) translateZ(280px);
+			}
+			.face:nth-child(8) {
+				transform: rotateY(315deg) translateZ(280px);
+			}
+
+			/* Animations */
+
+			@keyframes spin {
+				from {
+					transform: rotateY(0);
+				}
+				to {
+					transform: rotateY(-360deg);
+				}
+			}
+
+			/* Form/configuration styles */
+
+			form {
+				margin-top: 1em;
+			}
+
+			fieldset {
+				display: inline-block;
+				vertical-align: top;
+				width: 450px;
+				border: 1px solid #333;
+				box-shadow: 3px 3px 3px #999;
+				border-radius: 5px;
+				margin-bottom: 10px;
+			}
+
+			input[type=range], output {
+				float: right;
+			}
+
+			input[type=range] {
+				margin: 2px 0 0;
+			}
+
+			output {
+				width: 100px;
+				text-align: right;
+			}
+
+		</style>
+
+	</head>
+	<body>
+		<h1>CSS 3D Transforms: Carousel</h1>
+
+		<div id="stage">
+			<div id="shape">
+				<div class="face">1</div>
+				<div class="face">2</div>
+				<div class="face">3</div>
+				<div class="face">4</div>
+				<div class="face">5</div>
+				<div class="face">6</div>
+				<div class="face">7</div>
+				<div class="face">8</div>
+			</div>
+		</div>
+
+		<form id="config">
+
+			<fieldset>
+				<em>#stage</em>
+				<div>
+					<label>perspective (px)</label>
+					<input type="range" id="perspective" min="100" max="2000" value="800" data-target="#stage" data-unit="px">
+				</div>
+
+				<div>
+					<label>perspective-origin-x (%)</label>
+					<input type="range" id="perspective-origin-x" min="0" max="100" data-target="#stage" data-unit="%">
+				</div>
+
+				<div>
+					<label>perspective-origin-y (%)</label>
+					<input type="range" id="perspective-origin-y" min="0" max="100" data-target="#stage" data-unit="%">
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<em>#shape (.face origin)</em>
+				<div>
+					transform-style:
+					<label>
+						<input type="radio" id="transform-style-preserve-3d" name="transform-style" value="preserve-3d" data-target="#shape" checked>
+						preserve 3d
+					</label>
+					<label>
+						<input type="radio" id="transform-style-flat" name="transform-style" value="flat" data-target="#shape">
+						flat
+					</label>
+				</div>
+				<div>
+					<label>animation-duration (s)</label>
+					<input type="range" id="animation-duration" min="1" max="20" value="8" data-target="#shape" data-unit="s">
+				</div>
+				<div>
+					visibility:
+					<label>
+						<input type="radio" id="background-color-transparent" name="background-color" value="transparent" data-target="#shape" checked>
+						transparent
+					</label>
+					<label>
+						<input type="radio" id="background-color-solid" name="background-color" value="#333" data-target="#shape">
+						solid
+					</label>
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<em>.face (matrix.translate)</em>
+				<div>
+					<label>translateX (px)</label>
+					<input type="range" id="translateX" min="-280" max="280" data-target=".face" data-unit="px" data-transform="translateX">
+				</div>
+				<div>
+					<label>translateY (px)</label>
+					<input type="range" id="translateY" min="-280" max="280" data-target=".face" data-unit="px" data-transform="translateY">
+				</div>
+				<div>
+					<label>translateZ (px)</label>
+					<input type="range" id="translateZ" min="-280" max="280" data-target=".face" data-unit="px" data-transform="translateZ">
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<em>.face (matrix.rotate)</em>
+				<div>
+					<label>rotateX (deg)</label>
+					<input type="range" id="rotateX" min="-180" max="180" value="0" data-target=".face" data-unit="deg" data-transform="rotateX">
+				</div>
+				<div>
+					<label>rotateY (deg)</label>
+					<input type="range" id="rotateY" min="-180" max="180" value="0" data-target=".face" data-unit="deg" data-transform="rotateY">
+				</div>
+				<div>
+					<label>rotateZ (deg)</label>
+					<input type="range" id="rotateZ" min="-180" max="180" value="0" data-target=".face" data-unit="deg" data-transform="rotateZ">
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<em>.face</em>
+				<div>
+					<label>opacity</label>
+					<input type="range" id="opacity" min="0" max="1" step="0.1" value="0.7" data-target=".face" data-unit="">
+				</div>
+
+				<div>
+					backface-visibility:
+					<label>
+						<input type="radio" id="backface-visibility-visible" name="backface-visibility" value="visible" data-target=".face" checked>
+						visible
+					</label>
+					<label>
+						<input type="radio" id="backface-visibility-hidden" name="backface-visibility" value="hidden" data-target=".face">
+						hidden
+					</label>
+				</div>
+			</fieldset>
+
+			<input type="reset"/>
+
+		</form>
+
+		<script src="../resources/prefixfree.min.js"></script>
+		<script src="../resources/html5slider.js"></script>
+		<script src="../resources/lib.js"></script>
+
+		<script>
+
+			var configAll = $$('input[type=range], input[type=radio]');
+			var configRange = $$('input[type=range]');
+			var configReset = $$('input[type=range], input[type=radio]:checked');
+
+			var initConfigHandlers = function() {
+
+				[].forEach.call(configAll, function(element) {
+					element.addEventListener('change', function(event) {
+						updateAnimation(event.target);
+					}, false);
+				});
+			};
+
+			var updateAnimation = function(element) {
+
+				var units = element.getAttribute('data-unit') || '',
+					value = element.value,
+					previousValue = element._previousValue || 0,
+					property = element.name || element.id,
+					targets = $$(element.getAttribute('data-target')),
+					transform,
+					matrix;
+
+				[].forEach.call(targets, function(target) {
+					transform = element.getAttribute('data-transform');
+					if(transform) {
+
+						var MatrixImpl =
+								typeof WebKitCSSMatrix !== 'undefined' ? WebKitCSSMatrix :
+								typeof MozCSSMatrix !== 'undefined' ? MozCSSMatrix :
+								typeof MSCSSMatrix !== 'undefined' ? MSCSSMatrix :
+								typeof OCSSMatrix !== 'undefined' ? OCSSMatrix :
+								typeof CSSMatrix !== 'undefined' ? CSSMatrix :
+								null;
+
+						if(!MatrixImpl) {
+							return;
+						}
+
+						matrix = new MatrixImpl(window.getComputedStyle(target)[getStyleName('transform')]);
+
+						switch(transform) {
+							case 'translateX':
+								matrix = matrix.translate(value - previousValue, 0, 0);
+								break;
+							case 'translateY':
+								matrix = matrix.translate(0, value - previousValue, 0);
+								break;
+							case 'translateZ':
+								matrix = matrix.translate(0, 0, value - previousValue);
+								break;
+							case 'rotateX':
+								matrix = matrix.rotate(value - previousValue, 0, 0);
+								break;
+							case 'rotateY':
+								matrix = matrix.rotate(0, value - previousValue, 0);
+								break;
+							case 'rotateZ':
+								matrix = matrix.rotate(0, 0, value - previousValue);
+								break;
+						}
+
+						target.style[getStyleName('transform')] = matrix;
+
+					} else {
+
+						target.style[getStyleName(property)] = value + units;
+
+					}
+				})
+
+				element._previousValue = value;
+			}
+
+			var initOutputValues = function() {
+
+				[].forEach.call(configRange, function(element) {
+
+					element.addEventListener('change', function(event) {
+						element = event.target;
+						$('output[name=output_'+ element.id +']').value = element.value.substr(0, 11);
+					});
+
+					output = document.createElement('output');
+					output.name = 'output_' + element.id;
+					output.setAttribute('for', element.id);
+					output.defaultValue = output.value = element.value.substr(0, 11);
+
+					element.parentNode.insertBefore(output, element);
+				})
+			};
+
+			window.addEventListener('DOMContentLoaded', function() {
+				initConfigHandlers();
+				initOutputValues();
+			}, false);
+
+			$('#config').addEventListener('reset', function() {
+				[].forEach.call(configReset, function(element) {
+					updateAnimation(element)
+				});
+			}, false)
+
+		</script>
+
+	</body>
+</html>
