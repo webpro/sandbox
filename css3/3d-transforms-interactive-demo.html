@@ -273,7 +273,7 @@
 
 				var units = element.getAttribute('data-unit') || '',
 					value = element.value,
-					previousValue = element._previousValue || 0,
+					previousValue = element._previousValue || element.defaultValue,
 					property = element.name || element.id,
 					targets = $$(element.getAttribute('data-target')),
 					transform,
@@ -296,6 +296,8 @@
 						}
 
 						matrix = new MatrixImpl(window.getComputedStyle(target)[getStyleName('transform')]);
+
+						value = parseFloat(value), previousValue = parseFloat(previousValue);
 
 						switch(transform) {
 							case 'translateX':
