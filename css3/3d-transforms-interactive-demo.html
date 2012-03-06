@@ -300,7 +300,7 @@
 
 				var units = element.getAttribute('data-unit') || '',
 					value = element.value,
-					previousValue = element._previousValue || element.defaultValue,
+					previousValue = element._previousValue || element.defaultValue || 0,
 					property = element.name || element.id,
 					targets = $$(element.getAttribute('data-target')),
 					transform,
@@ -403,9 +403,11 @@
 			}, false);
 
 			$('#config').addEventListener('reset', function() {
-				[].forEach.call(configReset, function(element) {
-					updateAnimation(element)
-				});
+				setTimeout(function() {
+					[].forEach.call(configReset, function(element) {
+						updateAnimation(element)
+					});
+				}, 0)
 			}, false)
 
 		</script>
