@@ -14,29 +14,57 @@
 		url('museo300-regular-webfont.ttf') format('truetype');
 }
 
+/* Resets */
+
+* {
+	box-sizing: border-box;
+}
+
+table {
+	border-collapse:collapse;
+	table-layout:fixed;
+}
+
+ul {
+	list-style: none;
+	padding-left: 0;
+}
+
 /* Main layout */
 
 body {
-	margin:0 0 1em 0;
+	margin: 0 2em 2em;
 	background: url('content_bg.jpg') top left repeat;
 }
 
-body > header,
-body > section,
-body > footer {
-	margin:0 auto;
-	max-width: 760px;
-	padding-left:2%;
-	padding-right:2%;
-}
-
 header {
-	min-height: 100px;
-	background: url("html5-badge-h-css3-graphics-performance-semantics.png") top right no-repeat;
+	padding: 2em 0;
+	background: url("webpro-57x57.png") left center no-repeat;
 }
 
-header h1 {
-	margin-top: 1em;
+article {
+	margin: 0 auto 2em;
+	column-width: 23em;
+	column-gap: 2em;
+}
+
+section,
+table,
+ul {
+	column-break-inside: avoid;
+}
+
+h1,
+h2 {
+	column-break-after: avoid;
+}
+
+section:after {
+	/*
+	 * Ugly hack to prevent table shadow from rendering in next column (WebKit)
+	 * This now also serves as bottom margin
+	 */
+	content: "\00a0";
 }
 
 /* Typography */
@@ -44,6 +72,12 @@ header h1 {
 body {
 	font-family: 'Trebuchet MS';
 	font-size:16px;
+	color: #424242;
+}
+
+header,
+footer {
+	text-align: center;
 }
 
 h1, h2, h3, table th {
@@ -53,12 +87,20 @@ h1, h2, h3, table th {
 	letter-spacing:1px;
 }
 
+header h1 {
+	font-size: 2em;
+	color: #424242;
+	margin: 0;
+}
+
 h1, .alpha {
 	font-size:1.5em;
+	margin: 0 0 0.3em;
+	color: #F68A22;
 }
 
 h2, .beta {
-	font-size:1.125em;
+	font-size:1.25em;
 }
 
 p, a {
@@ -66,71 +108,76 @@ p, a {
 }
 
 a {
-	-webkit-transition: color 0.3s;
-	-moz-transition: color 0.3s;
-	-o-transition: color 0.3s;
-	transition: color 0.3s;
+	transition: all 0.3s;
 }
 
 a:hover {
 	color: #f68a22;
+	border-bottom-color: #f68a22;
+}
+
+article a {
+	text-decoration: none;
+	border-bottom: 1px solid #ddd;
 }
 
 /* Table */
 
-table {
-	background-color:#f4f4f4;
-	-webkit-box-shadow:2px 2px 5px #CCC;
-	-moz-box-shadow:2px 2px 5px #CCC;
-	box-shadow:2px 2px 5px #CCC;
-	border-collapse:collapse;
+table,
+ul {
+	width: 99%;
+	background-color: #f4f4f4;
+	margin: 0 0 2em;
 }
 
-thead {
-	background-color:#ddd;
+table,
+ul,
+.table-header {
+	box-shadow: 3px 3px 3px #CCC;
 }
 
-thead tr + tr {
-	font-size: 70%;
-	line-height: 1;
-	text-align:center;
-	color: #999;
+table thead,
+.table-header {
+	background-color: #ddd;
 }
 
-tr {
-	line-height:3;
+.table-header {
+	margin: 0;
+	width: 99%;
 }
 
-td[colspan] {
-	text-align:center;
+.table-header,
+td,
+li {
+	padding: 0.9em 5px;
+}
+
+td {
+	text-align: center;
+	vertical-align: middle;
+}
+
+th {
+	padding: 0.3em 5px 0.2em;
 }
 
 th:first-child, td:first-child {
-	padding-left:8px;
-         }
-
-.th-demo {
 	text-align:left;
-	width:420px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
-.support {
-	visibility:hidden;
-	display:inline-block;
-	margin:0 5px;
-	width:32px;
-	height:32px;
-	background-image:url("browser-icons-32x32-32b.png");
-	background-repeat:no-repeat;
-	vertical-align:middle;
+th:not(.description) {
+	width: 77px;
 }
 
-.supported {
-	visibility:visible;
+@media all and (max-width: 1024px) {
+	body {
+		margin: 0 0.5em 2em;
+	}
+	article {
+		column-gap: 1em;
+	}
 }
 
-.ie { background-position:0 0; }
-.ff { background-position:-32px 0; }
-.gc { background-position:-64px 0; }
-.sa { background-position:-96px 0; }
-.op { background-position:-128px 0; }
