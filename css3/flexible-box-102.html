@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>CSS Flexible Box 101</title>
+		<style type="text/css">
+
+			section {
+				display: flex;
+				border: 1px solid #000;
+			}
+
+			.row {
+				flex-direction: row;
+				flex-wrap: wrap;
+			}
+
+			.row div {
+				flex: 1 1 200px;
+				padding: 0.5em;
+			}
+
+			.row.wider div {
+				flex: 400px;
+			}
+
+			.row.reverse {
+				flex-wrap: wrap-reverse;
+			}
+
+			div:nth-child(2n) {
+				background-color: #EEE;
+			}
+
+			.center {
+				height: 300px;
+				align-items: center;
+				justify-content: center;
+			}
+		</style>
+
+		<script src="../resources/prefixfree.min.js"></script>
+
+	</head>
+	<body>
+		<h1>CSS Flexible Box</h1>
+
+		<h2>Responsive boxes</h2>
+
+		<p>By adding <code>flex-wrap: wrap;</code>, boxes can flow onto multiple lines.</p>
+
+		<p>The <code>flex-basis</code> (e.g. <code>200px</code>) can either grow (<code>flex-grow</code>) or shrink (<code>flex-shrink</code>).</p>
+
+		<pre><code>
+.row {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.row div {
+	flex: 1 1 200px;
+}
+		</code></pre>
+
+		<section class="row">
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+			<div>5</div>
+		</section>
+
+		<h2>Responsive boxes (wider)</h2>
+
+		<pre><code>
+.row.wider div {
+	flex: 400px;
+}
+		</code></pre>
+
+		<section class="row wider">
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+			<div>5</div>
+		</section>
+
+		<h2>Responsive boxes (wrap-reverse)</h2>
+
+		<p>The boxes can also be wrapped in reverse.</p>
+
+		<pre><code>
+.row.reverse {
+	flex-wrap: wrap-reverse;
+}
+		</code></pre>
+
+		<section class="row reverse">
+			<div>1</div>
+			<div>2</div>
+			<div>3</div>
+			<div>4</div>
+			<div>5</div>
+		</section>
+
+		<h2>Center</h2>
+
+		<pre><code>
+.center {
+	height: 300px;
+	justify-content: center; /* align to center of line */
+	align-items: center; /* align to center of other axis */
+}
+		</code></pre>
+
+		<section class="center">
+			middle/center
+		</section>
+
+	</body>
+</html>
